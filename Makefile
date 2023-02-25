@@ -6,16 +6,13 @@
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2023/02/25 19:00:18 by lpaulo-m         ###   ########.fr        #
+#    Updated: 2023/02/25 19:55:20 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = miniRT
 
-# CC = cc
-# CC = gcc
-# CC = clang
-CC = clang-12
+CC = cc
 
 CC_BASIC = $(CC) \
 	$(CCF_INCLUDES)
@@ -24,8 +21,8 @@ CC_STRICT = $(CC_BASIC) \
 	$(CCF_STRICT)
 
 CC_FULL = $(CC_STRICT) \
+	$(CCF_DEBUG)
 #	$(CCF_LEAK) \
-#	$(CCF_DEBUG)
 #	$(CCF_OPTIMIZATION) \
 
 CCF_INCLUDES = -I $(LIBFT_INCLUDES) -I $(INCLUDES_PATH)
@@ -237,7 +234,7 @@ VG_LOG_FLAGS = $(VG_FLAGS) \
 VG_LOG = valgrind_leaks.log
 
 VG_TARGET = ./miniRT
-VG_SCENE_PATH = scenes/bad_cam_look_at.rt
+VG_SCENE_PATH = scenes/plane_1.rt
 
 vg: vg_build
 	$(VG) $(VG_FLAGS) $(VG_TARGET) $(VG_SCENE_PATH)
