@@ -6,11 +6,11 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 01:10:04 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/20 18:54:49 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/25 18:18:15 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <internals.h>
+#include <minirt.h>
 
 static size_t	resolve_offset(t_bitmap *bitmap, t_writer *ctl)
 {

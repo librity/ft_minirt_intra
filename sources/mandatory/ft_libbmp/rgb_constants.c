@@ -1,26 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   rgb_constants.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/27 01:15:39 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/21 13:49:01 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/03/21 12:23:09 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2023/02/25 18:21:55 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <internals.h>
+#include <minirt.h>
 
-void	bm_free(t_bitmap *bitmap)
+t_rgb	rgb_white(void)
 {
-	size_t	height;
-	size_t	current_row;
+	return (color_rgb(255, 255, 255));
+}
 
-	height = abs(bitmap->header.height);
-	current_row = 0;
-	while (current_row < height)
-		free(bitmap->pixels[current_row++]);
-	free(bitmap->pixels);
-	free(bitmap);
+t_rgb	rgb_black(void)
+{
+	return (color_rgb(0, 0, 0));
+}
+
+t_rgb	rgb_blue(void)
+{
+	return (color_rgb(0, 0, 255));
+}
+
+t_rgb	rgb_green(void)
+{
+	return (color_rgb(0, 255, 0));
+}
+
+t_rgb	rgb_red(void)
+{
+	return (color_rgb(255, 0, 0));
 }

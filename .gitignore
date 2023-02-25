@@ -63,3 +63,5 @@ miniRT
 
 # Valgrind
 valgrind_leaks.log
+
+.vscode

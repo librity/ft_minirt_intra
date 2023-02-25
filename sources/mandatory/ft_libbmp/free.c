@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/27 01:17:24 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/29 15:52:40 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2021/03/27 01:15:39 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2023/02/25 18:18:15 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <internals.h>
+#include <minirt.h>
 
-int	abs(int number)
+void	bm_free(t_bitmap *bitmap)
 {
-	if (number < 0)
-		return (number * -1);
-	return (number);
-}
+	size_t	height;
+	size_t	current_row;
 
-void	putstr(char *s)
-{
-	while (*s)
-		write(1, s++, 1);
+	height = abs(bitmap->header.height);
+	current_row = 0;
+	while (current_row < height)
+		free(bitmap->pixels[current_row++]);
+	free(bitmap->pixels);
+	free(bitmap);
 }

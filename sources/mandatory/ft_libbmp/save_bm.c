@@ -6,11 +6,11 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 13:43:41 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/21 23:14:52 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/25 18:18:15 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <internals.h>
+#include <minirt.h>
 
 static void	transfer_pixels(t_mlx_image *image, t_bitmap *bm_image)
 {

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize.c                                       :+:      :+:    :+:   */
+/*   initialize_bm.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 01:12:49 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/21 16:04:09 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/25 18:18:15 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <internals.h>
+#include <minirt.h>
 
 static void	allocate_pixels(t_bitmap *bitmap)
 {

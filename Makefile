@@ -6,7 +6,7 @@
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2023/02/25 17:24:10 by lpaulo-m         ###   ########.fr        #
+#    Updated: 2023/02/25 18:26:34 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,11 @@ CC_STRICT = $(CC_BASIC) \
 	$(CCF_STRICT)
 
 CC_FULL = $(CC_STRICT) \
-	$(CCF_LEAK) \
-	$(CCF_DEBUG)
+#	$(CCF_LEAK) \
+#	$(CCF_DEBUG)
 #	$(CCF_OPTIMIZATION) \
 
-CCF_INCLUDES = -I $(LIBFT_INCLUDES) -I $(FT_LIBBMP_INCLUDES) -I $(INCLUDES_PATH)
+CCF_INCLUDES = -I $(LIBFT_INCLUDES) -I $(INCLUDES_PATH)
 CCF_STRICT = -Wall -Wextra -Werror
 CCF_OPTIMIZATION = -O3
 CCF_DEBUG = -g
@@ -56,10 +56,6 @@ LIBFT_PATH = $(LIBS_PATH)/libft
 LIBFT = $(LIBFT_PATH)/libft.a
 LIBFT_INCLUDES = $(LIBFT_PATH)/includes
 
-FT_LIBBMP_PATH = $(LIBS_PATH)/ft_libbmp
-FT_LIBBMP = $(FT_LIBBMP_PATH)/ft_libbmp.a
-FT_LIBBMP_INCLUDES = $(FT_LIBBMP_PATH)/includes
-
 ################################################################################
 # MANDATORY
 ################################################################################
@@ -78,11 +74,11 @@ M_OBJECT_DIRECTORIES = $(sort $(dir $(M_OBJECTS)))
 
 M_MAIN = ./main.c
 
-M_ARCHIVES = $(M_ARCHIVE) $(FT_LIBBMP) $(LIBFT)
+M_ARCHIVES = $(M_ARCHIVE) $(LIBFT)
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(FT_LIBBMP) $(M_ARCHIVE)
+$(NAME): $(LIBFT) $(M_ARCHIVE)
 	$(CC_FULL) \
 		$(M_MAIN) \
 		$(M_ARCHIVES) \
@@ -136,13 +132,7 @@ $(LIBFT):
 libft_clean:
 	$(MAKE_EXTERNAL) $(LIBFT_PATH) fclean
 
-$(FT_LIBBMP):
-	$(MAKE_EXTERNAL) $(FT_LIBBMP_PATH) all
-
-ft_libbmp_clean:
-	$(MAKE_EXTERNAL) $(FT_LIBBMP_PATH) fclean
-
-clean_libs: libft_clean ft_libbmp_clean
+clean_libs: libft_clean
 
 ################################################################################
 # RUN
@@ -272,7 +262,6 @@ vglog_clean: fclean
 
 norm:
 	$(MAKE_EXTERNAL) $(LIBFT_PATH) norm
-	$(MAKE_EXTERNAL) $(FT_LIBBMP_PATH) norm
 
 	@printf "\n$(G)=== No norminette errors found in $(LIBFT_PATH) ===$(RC)\n\n"
 	norminette $(INCLUDES_PATH)
@@ -310,7 +299,7 @@ dirs \
 \
 tclean \
 \
-libft_clean ft_libbmp_clean clean_libs \
+libft_clean clean_libs \
 \
 run \
 \

@@ -1,38 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rgb_constants.c                                    :+:      :+:    :+:   */
+/*   get_pixel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/21 12:23:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/20 19:00:41 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/02/13 10:57:48 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2023/02/25 18:18:15 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <internals.h>
+#include <minirt.h>
 
-t_rgb	rgb_white(void)
+int	mlx_image_get_pixel_int(t_mlx_image *image, int x, int y)
 {
-	return (color_rgb(255, 255, 255));
+	int	*pixel_color;
+
+	if (mlx_out_of_bounds(image, x, y))
+		return (RED);
+	pixel_color = (int *)&image->data[mlx_get_index(image, x, y)];
+	return (*pixel_color);
 }
 
-t_rgb	rgb_black(void)
+t_rgb	mlx_image_get_pixel_rgb(t_mlx_image *image, int x, int y)
 {
-	return (color_rgb(0, 0, 0));
-}
-
-t_rgb	rgb_blue(void)
-{
-	return (color_rgb(0, 0, 255));
-}
-
-t_rgb	rgb_green(void)
-{
-	return (color_rgb(0, 255, 0));
-}
-
-t_rgb	rgb_red(void)
-{
-	return (color_rgb(255, 0, 0));
+	return (int_to_rgb(mlx_image_get_pixel_int(image, x, y)));
 }

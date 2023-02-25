@@ -1,43 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rgb.c                                              :+:      :+:    :+:   */
+/*   trgb.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/21 12:23:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/21 13:18:31 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/02/15 16:44:29 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2023/02/25 18:18:15 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <internals.h>
+#include <minirt.h>
 
-t_rgb	color_rgb(unsigned char red, unsigned char green, unsigned char blue)
+int	trgb_chars_to_int(
+	unsigned char transparency,
+	unsigned char red,
+	unsigned char green,
+	unsigned char blue)
 {
-	return ((t_rgb){blue, green, red});
+	return (transparency << 24 | red << 16 | green << 8 | blue);
 }
 
-int	rgb_chars_to_int(unsigned char red, unsigned char green, unsigned char blue)
-{
-	return (trgb_chars_to_int(0, red, green, blue));
-}
-
-int	rgb_to_int(t_rgb color)
+int	trgb_to_int(t_trgb color)
 {
 	return (
 		trgb_chars_to_int(
-			0,
+			color.transparency,
 			color.red,
 			color.green,
 			color.blue));
 }
 
-t_rgb	int_to_rgb(int color)
+t_trgb	int_to_trgb(int color)
 {
-	t_rgb	rgb;
+	t_trgb	trgb;
 
-	rgb.red = (unsigned char)(color >> 16);
-	rgb.green = (unsigned char)(color >> 8);
-	rgb.blue = (unsigned char)color;
-	return (rgb);
+	trgb.transparency = (unsigned char)(color >> 24);
+	trgb.red = (unsigned char)(color >> 16);
+	trgb.green = (unsigned char)(color >> 8);
+	trgb.blue = (unsigned char)color;
+	return (trgb);
 }

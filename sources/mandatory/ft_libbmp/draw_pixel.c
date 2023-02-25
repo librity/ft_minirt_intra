@@ -6,11 +6,11 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 10:57:48 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/29 15:59:41 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/25 18:18:15 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <internals.h>
+#include <minirt.h>
 
 bool	mlx_out_of_bounds(t_mlx_image *image, int x, int y)
 {

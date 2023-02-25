@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:23:35 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/29 15:52:59 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/25 18:22:08 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,21 +72,58 @@ t_rgb				int_to_rgb(int color);
 
 t_rgb				rgb_white(void);
 t_rgb				rgb_black(void);
-t_rgb				rgb_red(void);
-t_rgb				rgb_green(void);
 t_rgb				rgb_blue(void);
+t_rgb				rgb_green(void);
+t_rgb				rgb_red(void);
 
 /******************************************************************************\
  * BITMAP
 \******************************************************************************/
 
+# define BITMAP_MAGIC_BITS "BM"
+
+typedef struct s_header
+{
+	unsigned int	buffer_size;
+	unsigned int	buffer_reserved;
+	unsigned int	buffer_offset;
+
+	unsigned int	total_size;
+	int				width;
+	int				height;
+
+	unsigned short	planes;
+	unsigned short	bit_count;
+	unsigned int	compression;
+	unsigned int	image_size;
+	int				x_resolution_ppm;
+	int				y_resolution_ppm;
+	unsigned int	colors_used;
+	unsigned int	important_colors;
+}					t_header;
+
+typedef struct s_bitmap
+{
+	t_header	header;
+	t_rgb		**pixels;
+}					t_bitmap;
+
+typedef struct s_writer
+{
+	size_t			height;
+	size_t			offset;
+	size_t			row_width;
+	size_t			padding_width;
+	unsigned char	padding[3];
+}					t_writer;
+
 extern void			*bm_initialize(int width, int height);
 
-extern void			bm_draw(void *bitmap, t_rgb color, int x, int y);
+extern void			bm_draw(t_bitmap *bitmap, t_rgb color, int x, int y);
 
-extern void			bm_save(void *bitmap, char *filename);
+extern void			bm_save(t_bitmap *bitmap, char *filename);
 
-extern void			bm_free(void *bitmap);
+extern void			bm_free(t_bitmap *bitmap);
 
 /******************************************************************************\
  * MLX
@@ -122,5 +159,30 @@ t_rgb				mlx_image_get_pixel_rgb(t_mlx_image *image, int x, int y);
 void				mlx_image_save_bm(t_mlx_image *image, char *filename);
 
 void				mlx_image_destroy(t_mlx_image *image);
+
+bool				mlx_out_of_bounds(t_mlx_image *image, int x, int y);
+int					mlx_get_index(t_mlx_image *image, int x, int y);
+
+/******************************************************************************\
+ * UTILS
+\******************************************************************************/
+
+int					abs(int number);
+void				putstr(char *s);
+
+/******************************************************************************\
+ * ERRORS
+\******************************************************************************/
+
+typedef enum e_errors
+{
+	EC_OPEN_BITMAP = 1,
+	EC_NO_HEADER,
+	EC_BAD_MALLOC,
+	EC_MLX_IMAGE_INIT,
+	EC_GENERIC
+}					t_errors;
+void				bm_die(t_errors code);
+void				die_if_null(void *ptr, t_errors code);
 
 #endif

@@ -6,11 +6,11 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 16:01:02 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/29 16:01:03 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/25 18:18:15 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <internals.h>
+#include <minirt.h>
 
 static char	*g_error_messages[EC_GENERIC] = {
 	"Couldn't create bitmap file.",
