@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 10:18:30 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/26 15:43:57 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/26 16:07:41 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static int	key_release(int key, void *mlx)
 static	int	redraw(void)
 {
 	mlx_put_image_to_window(mlx(), window(), camera_buffer()->img, 0, 0);
+	return (0);
 }
 
 static void	event_hook(void)

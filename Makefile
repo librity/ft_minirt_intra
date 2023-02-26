@@ -6,7 +6,7 @@
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2023/02/25 19:55:20 by lpaulo-m         ###   ########.fr        #
+#    Updated: 2023/02/26 16:06:43 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,8 @@ CC_BASIC = $(CC) \
 CC_STRICT = $(CC_BASIC) \
 	$(CCF_STRICT)
 
-CC_FULL = $(CC_STRICT) \
-	$(CCF_DEBUG)
+CC_FULL = $(CC_STRICT)
+#	$(CCF_DEBUG)
 #	$(CCF_LEAK) \
 #	$(CCF_OPTIMIZATION) \
 
