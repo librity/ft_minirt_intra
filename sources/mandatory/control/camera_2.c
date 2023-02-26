@@ -6,11 +6,24 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 19:18:56 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/25 17:52:07 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/26 15:56:15 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+t_v3d	resolve_up_vector(t_v3d orientation)
+{
+	t_v3d	temp;
+
+	if (doubles_are_equal(orientation.y, 1.0)
+		|| doubles_are_equal(orientation.y, -1.0))
+	{
+		temp = cross(orientation, vector(1, 0, 0));
+		return (cross(temp, orientation));
+	}
+	return (vector(0, 1, 0));
+}
 
 void	set_camera(t_p3d origin, t_v3d orientation, double horz_fov_deg)
 {
@@ -23,7 +36,9 @@ void	set_camera(t_p3d origin, t_v3d orientation, double horz_fov_deg)
 	cam->fov_rad = degrees_to_radians(horz_fov_deg);
 	set_challenge_camera(WINDOW_WIDTH, WINDOW_HEIGHT, cam->fov_rad);
 	view_transformation(origin,
-		add(origin, orientation), vector(0, 1, 0), &cam->transform);
+		add(origin, orientation),
+		resolve_up_vector(orientation),
+		&cam->transform);
 }
 
 void	inspect_camera(void)
